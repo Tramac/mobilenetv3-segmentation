@@ -110,3 +110,13 @@ venv.bak/
 
 # pycharm
 *.idea
+
+# data
+datasets/
+datasets/citys
+
+# runs
+runs/
+
+# debug
+debug.py
