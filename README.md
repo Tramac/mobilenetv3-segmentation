@@ -10,8 +10,8 @@ An unofficial implement of [MobileNetV3](https://arxiv.org/abs/1905.02244) for s
 - Python 3.x
 
 ## Usage
-### Train
 -----------------
+### Train
 - **Single GPU training**
 ```
 python train.py --model mobilenetv3_small --dataset citys --lr 0.0001 --epochs 240
@@ -24,7 +24,6 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS train.py --model mobi
 ```
 
 ### Evaluation
------------------
 - **Single GPU training**
 ```
 python eval.py --model mobilenetv3_small --dataset citys
@@ -38,6 +37,7 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS --model mobilenetv3_s
 
 ## Result
 - **Cityscapes**
+
 | Backbone  |  F   | mIoU | Params | Madds | CPU(f) | GPU(f) |
 | :-------: | :--: | :--: | :----: | :---: | :----: | :----: |
 | MV3-Small | 128  |      |        |       |        |        |
