@@ -22,6 +22,7 @@ from core.utils.metric import SegmentationMetric
 from core.data import get_segmentation_dataset
 from core.model import get_segmentation_model
 from core.nn.loss import MixSoftmaxCrossEntropyLoss, MixSoftmaxCrossEntropyOHEMLoss
+from torchscope import scope
 
 
 def parse_args():
@@ -129,7 +130,7 @@ class Trainer(object):
         if args.distributed:
             self.model = nn.parallel.DistributedDataParallel(self.model, device_ids=[args.local_rank],
                                                              output_device=args.local_rank)
-
+        scope(self.model, (3, args.crop_size, args.crop_size))
         # resume checkpoint if needed
         if args.resume:
             if os.path.isfile(args.resume):

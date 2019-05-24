@@ -38,15 +38,16 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS --model mobilenetv3_s
 ## Result
 - **Cityscapes**
 
-| Backbone  |  F   | mIoU | Params | Madds | CPU(f) | GPU(f) |
-| :-------: | :--: | :--: | :----: | :---: | :----: | :----: |
-| MV3-Small | 128  |      |        |       |        |        |
-| MV3-Large | 128  |      |        |       |        |        |
+| Backbone  |  F   | mIoU | Params(M) | Madds(G) | CPU(f) | GPU(f) |
+| :-------: | :--: | :--: | :-------: | :------: | :----: | :----: |
+| MV3-Small | 128  |      |    1.02   |   2.98   |        |        |
+| MV3-Large | 128  |      |    2.68   |   8.40   |        |        |
 
-F: Number of Filters used in the Segmentation Head, MV3: MobileNetV3.
+Note: Params and Madds are got using [torchscope](https://github.com/Tramac/torchscope). They are much larger than those reported in the [paper](https://arxiv.org/abs/1905.02244).
 
 ## To Do
 - [ ] train and eval
+- [x] test madds
 
 ## References
 - [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)

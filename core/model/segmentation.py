@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .base import SegBaseModel
+from core.model.base import SegBaseModel
 
 __all__ = ['MobileNetV3Seg', 'get_mobilenetv3_large_seg', 'get_mobilenetv3_small_seg']
 
@@ -107,6 +107,4 @@ def get_mobilenetv3_small_seg(dataset='citys', pretrained=False, root='~/.torch/
 
 
 if __name__ == '__main__':
-    img = torch.randn(1, 3, 1012, 512)
     model = MobileNetV3Seg(19)
-    outputs = model(img)
