@@ -75,7 +75,7 @@ def parse_args():
                         help='save model every checkpoint-epoch')
     parser.add_argument('--log-dir', default='../runs/logs/',
                         help='Directory for saving checkpoint models')
-    parser.add_argument('--log-iter', type=int, default=11,
+    parser.add_argument('--log-iter', type=int, default=10,
                         help='print log every log-iter')
     # evaluation only
     parser.add_argument('--skip-val', action='store_true', default=False,
@@ -248,14 +248,14 @@ def save_checkpoint(model, args, is_best=False):
     directory = os.path.expanduser(args.save_dir)
     if not os.path.exists(directory):
         os.makedirs(directory)
-    filename = '{}_{}_{}.pth'.format(args.model, args.backbone, args.dataset)
+    filename = '{}_{}.pth'.format(args.model, args.dataset)
     filename = os.path.join(directory, filename)
 
     if args.distributed:
         model = model.module
     torch.save(model.state_dict(), filename)
     if is_best:
-        best_filename = '{}_{}_{}_best_model.pth'.format(args.model, args.backbone, args.dataset)
+        best_filename = '{}_{}_best_model.pth'.format(args.model, args.dataset)
         best_filename = os.path.join(directory, best_filename)
         shutil.copyfile(filename, best_filename)
 
