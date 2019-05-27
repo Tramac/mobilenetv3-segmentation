@@ -9,7 +9,7 @@ __all__ = ['MobileNetV3Seg', 'get_mobilenetv3_large_seg', 'get_mobilenetv3_small
 
 
 class MobileNetV3Seg(SegBaseModel):
-    def __init__(self, nclass, aux=True, backbone='mobilenetv3_large', pretrained_base=False, **kwargs):
+    def __init__(self, nclass, aux=False, backbone='mobilenetv3_large', pretrained_base=False, **kwargs):
         super(MobileNetV3Seg, self).__init__(nclass, aux, backbone, pretrained_base, **kwargs)
         self.head = _SegHead(nclass, self.mode, **kwargs)
         if aux:
@@ -101,7 +101,7 @@ def get_mobilenetv3_small_seg(dataset='citys', pretrained=False, root='~/.torch/
     model = MobileNetV3Seg(datasets[dataset].NUM_CLASS, backbone='mobilenetv3_small',
                            pretrained_base=pretrained_base, **kwargs)
     if pretrained:
-        import get_model_file
+        from ..model import get_model_file
         model.load_state_dict(torch.load(get_model_file('mobilenetv3_small_%s' % (acronyms[dataset]), root=root)))
     return model
 

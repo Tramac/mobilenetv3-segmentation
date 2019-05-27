@@ -17,7 +17,7 @@ from core.utils.visualize import get_color_pallete
 from core.utils.logger import setup_logger
 from core.utils.distributed import synchronize, get_rank, make_data_sampler, make_batch_data_sampler
 
-from scripts.train import parse_args
+from train import parse_args
 
 
 class Evaluator(object):

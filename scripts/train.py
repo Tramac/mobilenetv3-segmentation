@@ -22,7 +22,6 @@ from core.utils.metric import SegmentationMetric
 from core.data import get_segmentation_dataset
 from core.model import get_segmentation_model
 from core.nn.loss import MixSoftmaxCrossEntropyLoss, MixSoftmaxCrossEntropyOHEMLoss
-from torchscope import scope
 
 
 def parse_args():
@@ -76,7 +75,7 @@ def parse_args():
                         help='save model every checkpoint-epoch')
     parser.add_argument('--log-dir', default='../runs/logs/',
                         help='Directory for saving checkpoint models')
-    parser.add_argument('--log-iter', type=int, default=10,
+    parser.add_argument('--log-iter', type=int, default=11,
                         help='print log every log-iter')
     # evaluation only
     parser.add_argument('--skip-val', action='store_true', default=False,
@@ -130,7 +129,7 @@ class Trainer(object):
         if args.distributed:
             self.model = nn.parallel.DistributedDataParallel(self.model, device_ids=[args.local_rank],
                                                              output_device=args.local_rank)
-        scope(self.model, (3, args.crop_size, args.crop_size))
+        self.model = self.model.to(args.device)
         # resume checkpoint if needed
         if args.resume:
             if os.path.isfile(args.resume):
@@ -243,6 +242,7 @@ class Trainer(object):
         save_checkpoint(self.model, self.args, is_best)
         synchronize()
 
+
 def save_checkpoint(model, args, is_best=False):
     """Save Checkpoint"""
     directory = os.path.expanduser(args.save_dir)
@@ -258,6 +258,7 @@ def save_checkpoint(model, args, is_best=False):
         best_filename = '{}_{}_{}_best_model.pth'.format(args.model, args.backbone, args.dataset)
         best_filename = os.path.join(directory, best_filename)
         shutil.copyfile(filename, best_filename)
+
 
 if __name__ == '__main__':
     args = parse_args()
