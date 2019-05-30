@@ -38,15 +38,20 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS --model mobilenetv3_s
 ## Result
 - **Cityscapes**
 
-| Backbone  |  F   | mIoU | Params(M) | Madds(G) | CPU(f) | GPU(f) |
-| :-------: | :--: | :--: | :-------: | :------: | :----: | :----: |
-| MV3-Small | 128  |      |    1.02   |   2.98   |        |        |
-| MV3-Large | 128  |      |    2.68   |   8.40   |        |        |
+| Backbone  |  F   | Epochs |  OHEM  | mIoU  | Params(M) | Madds(G) | CPU(f) | GPU(f) |
+| :-------: | :--: | :----: | :----: | :---: | :-------: | :------: | :----: | :----: |
+| MV3-Small | 128  |   80   |   ✘    | 0.411 |    1.02   |   2.98   |        |        |
+| MV3-Small | 128  |   80   |   ✓    | 0.476 |    1.02   |   2.98   |        |        |
+| MV3-Large | 128  |   80   |   ✘    | 0.463 |    2.68   |   8.40   |        |        |
+| MV3-Large | 128  |   80   |   ✓    | 0.529 |    2.68   |   8.40   |        |        |
+| MV3-Large | 128  |   160  |   ✓    | 0.526 |    2.68   |   8.40   |        |        |
+where: `lr=0.01, crop_size=768`
 
 Note: Params and Madds are got using [torchscope](https://github.com/Tramac/torchscope). They are much larger than those reported in the [paper](https://arxiv.org/abs/1905.02244).
 
 ## To Do
-- [ ] train and eval
+- [ ] improve performance
+- [x] train and eval
 - [x] test madds
 
 ## References
