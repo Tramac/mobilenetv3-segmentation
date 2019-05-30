@@ -13,7 +13,6 @@ import numpy as np
 
 from core.model import get_segmentation_model
 from scripts.train import parse_args
-from tqdm import tqdm
 
 
 def compute_fps(args):

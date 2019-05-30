@@ -27,7 +27,7 @@ from core.nn.loss import MixSoftmaxCrossEntropyLoss, MixSoftmaxCrossEntropyOHEML
 def parse_args():
     parser = argparse.ArgumentParser(description='MobileNetV3 for Segmentation Training with Pytorch')
     # model and dataset
-    parser.add_argument('--model', type=str, default='mobilenetv3_small',
+    parser.add_argument('--model', type=str, default='mobilenetv3_large',
                         help='model name (default: mobilenetv3_large)')
     parser.add_argument('--dataset', type=str, default='citys',
                         help='dataset name (default: citys)')

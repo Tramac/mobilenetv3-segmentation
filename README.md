@@ -38,13 +38,13 @@ python -m torch.distributed.launch --nproc_per_node=$NGPUS --model mobilenetv3_s
 ## Result
 - **Cityscapes**
 
-| Backbone  |  F   | Epochs |  OHEM  | mIoU  | Params(M) | Madds(G) | CPU(f) | GPU(f) |
-| :-------: | :--: | :----: | :----: | :---: | :-------: | :------: | :----: | :----: |
-| MV3-Small | 128  |   80   |   ✘    | 0.411 |    1.02   |   2.98   |        |        |
-| MV3-Small | 128  |   80   |   ✓    | 0.476 |    1.02   |   2.98   |        |        |
-| MV3-Large | 128  |   80   |   ✘    | 0.463 |    2.68   |   8.40   |        |        |
-| MV3-Large | 128  |   80   |   ✓    | 0.529 |    2.68   |   8.40   |        |        |
-| MV3-Large | 128  |   160  |   ✓    | 0.526 |    2.68   |   8.40   |        |        |
+| Backbone  |  F   | Epochs |  OHEM  | mIoU  | Params(M) | Madds(G) | CPU(fps) | GPU(fps) |
+| :-------: | :--: | :----: | :----: | :---: | :-------: | :------: | :------: | :------: |
+| MV3-Small | 128  |   80   |   ✘    | 0.411 |    1.02   |   2.98   |   1.12   |   76.61  |
+| MV3-Small | 128  |   80   |   ✓    | 0.476 |     -     |    -     |    -     |     -    |
+| MV3-Large | 128  |   80   |   ✘    | 0.463 |    2.68   |   8.40   |   0.61   |   63.16  |
+| MV3-Large | 128  |   80   |   ✓    | 0.529 |     -     |    -     |    -     |     -    |
+| MV3-Large | 128  |   160  |   ✓    | 0.526 |     -     |    -     |    -     |     -    |
 
 where: `lr=0.01, crop_size=768`
 
