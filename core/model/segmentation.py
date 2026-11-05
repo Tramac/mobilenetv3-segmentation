@@ -84,7 +84,7 @@ def get_mobilenetv3_large_seg(dataset='citys', pretrained=False, root='~/.torch/
                            pretrained_base=pretrained_base, **kwargs)
     if pretrained:
         import get_model_file
-        model.load_state_dict(torch.load(get_model_file('mobilenetv3_large_%s' % (acronyms[dataset]), root=root)))
+        model.load_state_dict(torch.load(get_model_file('mobilenetv3_large_%s' % (acronyms[dataset]), root=root), map_location='cpu'))
     return model
 
 
@@ -102,7 +102,7 @@ def get_mobilenetv3_small_seg(dataset='citys', pretrained=False, root='~/.torch/
                            pretrained_base=pretrained_base, **kwargs)
     if pretrained:
         from ..model import get_model_file
-        model.load_state_dict(torch.load(get_model_file('mobilenetv3_small_%s' % (acronyms[dataset]), root=root)))
+        model.load_state_dict(torch.load(get_model_file('mobilenetv3_small_%s' % (acronyms[dataset]), root=root), map_location='cpu'))
     return model
 
 
